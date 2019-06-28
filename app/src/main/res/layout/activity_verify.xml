@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorLightGray"
+    android:orientation="vertical"
+    tools:context=".Activities.VerifyActivity">
+
+
+    <include layout="@layout/action_bar" />
+
+    <LinearLayout
+        android:id="@+id/ll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginRight="20dp"
+
+        android:background="@drawable/green_border"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/sent_txt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/iransansmobile"
+            android:padding="10dp"
+            android:text=""
+            android:textColor="@color/colorblack"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/edit_number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/iransansmobile"
+            android:padding="10dp"
+            android:text="ویرایش شماره تماس"
+            android:textColor="@color/colorBlue"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+
+    <EditText
+
+        android:id="@+id/et_code"
+
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@id/ll"
+        android:layout_gravity="center"
+        android:layout_margin="30dp"
+
+        android:background="@drawable/black_border"
+        android:fontFamily="@font/iransansmobile"
+        android:gravity="center"
+        android:inputType="number"
+        android:maxLength="5"
+        android:padding="5dp"
+        android:textColor="@color/colorblack"
+        android:textSize="14sp" />
+
+    <ProgressBar
+        android:id="@+id/verify_progressbar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/et_code"
+        android:layout_centerHorizontal="true"
+        android:elevation="4dp"
+        android:visibility="gone" />
+
+    <Button
+        android:id="@+id/verify_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/et_code"
+        android:background="@color/colorGreen"
+        android:text="تایید" />
+</RelativeLayout>

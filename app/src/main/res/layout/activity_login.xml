@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+
+android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+
+    android:background="@color/colorLightGray"
+    tools:context=".Activities.LoginActivity">
+
+    <include layout="@layout/action_bar" />
+
+   <ScrollView
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content">
+       <RelativeLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content">
+           <EditText
+               android:textColor="@color/colorblack"
+               android:inputType="number"
+               android:layout_marginRight="15dp"
+               android:layout_marginLeft="15dp"
+               android:layout_marginTop="70dp"
+               android:textSize="14sp"
+               android:id="@+id/mobile"
+               android:paddingEnd="10dp"
+               android:padding="10dp"
+               android:textColorHint="@color/colorGray"
+               android:hint="@string/mobile_number"
+               android:fontFamily="@font/iransansmobile"
+               android:background="@drawable/edittext_border"
+               android:layout_width="match_parent"
+               android:layout_height="40dp"
+               tools:ignore="RtlSymmetry" />
+           <EditText
+               android:layout_below="@id/mobile"
+               android:textSize="14sp"
+               android:textColor="@color/colorblack"
+               android:padding="10dp"
+               android:inputType="textPassword"
+               android:id="@+id/password"
+               android:paddingEnd="10dp"
+               android:textColorHint="@color/colorGray"
+               android:hint="@string/password"
+               android:fontFamily="@font/iransansmobile"
+               android:layout_margin="15dp"
+               android:background="@drawable/edittext_border"
+               android:layout_width="match_parent"
+               android:layout_height="40dp"
+               tools:ignore="RtlSymmetry" />
+
+
+           <TextView
+               android:layout_below="@id/password"
+               android:textSize="15sp"
+
+               android:layout_margin="10dp"
+               android:id="@+id/forgotten_password_txt"
+               android:fontFamily="@font/iransansmobile"
+               android:gravity="center"
+               android:layout_gravity="center"
+               android:textColor="@color/colorGray"
+               android:text="@string/forgotten_password"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content" />
+
+           <TextView
+               android:layout_below="@id/forgotten_password_txt"
+               android:textSize="15sp"
+               android:layout_margin="10dp"
+               android:id="@+id/register_txt"
+               android:fontFamily="@font/iransansmobile"
+               android:gravity="center"
+               android:layout_gravity="center"
+               android:textColor="@color/colorGreen"
+               android:text="@string/register"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content" />
+       </RelativeLayout>
+   </ScrollView>
+    <ProgressBar
+        android:id="@+id/login_progressbar"
+        android:layout_width="wrap_content"
+
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:elevation="4dp"
+        android:visibility="gone" />
+    <Button
+        android:id="@+id/login_btn"
+ android:layout_gravity="bottom"
+
+        android:layout_width="match_parent"
+ android:layout_alignParentBottom="true"
+
+        android:layout_height="50dp"
+
+        android:background="@color/colorGreen"
+        android:fontFamily="@font/iransansmobile"
+        android:text="@string/login_to_account"
+        android:textColor="@color/colorWhite"
+        android:textSize="14sp" />
+
+</RelativeLayout>

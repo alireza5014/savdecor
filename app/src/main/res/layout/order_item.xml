@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/order_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_centerHorizontal="true"
+    android:layout_centerVertical="true"
+    android:layout_gravity="center"
+    android:layout_margin="1dp"
+    android:gravity="center"
+    android:layoutDirection="rtl"
+    android:orientation="vertical"
+    android:textDirection="rtl">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_margin="1dp"
+        android:background="@drawable/edittext_border"
+        app:cardBackgroundColor="@color/colorWhite"
+        app:cardCornerRadius="3dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+
+
+            <TextView
+                android:id="@+id/id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_weight=".1"
+
+                android:fontFamily="@font/iransansmobile"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="5"
+                android:textColor="@color/colorblack"
+                android:textSize="13dp" />
+
+            <TextView
+                android:id="@+id/order_no"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight=".3"
+
+
+                android:fontFamily="@font/iransansmobile"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="50,000"
+                android:textColor="@color/colorblack"
+                android:textSize="13dp" />
+
+            <TextView
+                android:id="@+id/total_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight=".3"
+
+
+                android:fontFamily="@font/iransansmobile"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="50,000"
+                android:textColor="@color/colorblack"
+                android:textSize="13dp" />
+
+            <TextView
+                android:id="@+id/created_at"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight=".3"
+
+                android:fontFamily="@font/iransansmobile"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="50,000"
+                android:textColor="@color/colorblack"
+                android:textSize="13dp" />
+
+
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+</RelativeLayout>

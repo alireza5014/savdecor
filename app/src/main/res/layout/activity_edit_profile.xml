@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorLightGray"
+    android:orientation="vertical"
+    tools:context=".Activities.EditProfileActivity">
+
+    <include layout="@layout/action_bar" />
+
+    <ProgressBar
+        android:id="@+id/page_progressbar"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:elevation="5dp" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="50dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:id="@+id/ll1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/fname"
+                    android:layout_width="match_parent"
+
+                    android:layout_height="40dp"
+                    android:layout_margin="10dp"
+                    android:layout_weight=".5"
+                    android:background="@drawable/edittext_border"
+                    android:fontFamily="@font/iransansmobile"
+
+                    android:hint="@string/fname"
+                    android:padding="10dp"
+                    android:paddingEnd="10dp"
+                    android:textColor="@color/colorblack"
+                    android:textColorHint="@color/colorGray"
+                    android:textSize="12sp"
+                    tools:ignore="RtlSymmetry" />
+
+                <EditText
+                    android:id="@+id/lname"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_below="@+id/fname"
+                    android:layout_margin="10dp"
+                    android:layout_weight=".5"
+                    android:background="@drawable/edittext_border"
+                    android:fontFamily="@font/iransansmobile"
+                    android:hint="@string/lname"
+                    android:padding="10dp"
+                    android:paddingEnd="10dp"
+                    android:textColor="@color/colorblack"
+                    android:textColorHint="@color/colorGray"
+                    android:textSize="12sp"
+                    tools:ignore="RtlSymmetry" />
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/mobile"
+
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_below="@+id/ll1"
+                android:layout_margin="10dp"
+                android:background="@drawable/edittext_border"
+                android:fontFamily="@font/iransansmobile"
+                android:hint="موبایل"
+                android:inputType="number"
+                android:padding="10dp"
+                android:paddingEnd="10dp"
+                android:textColor="@color/colorblack"
+                android:textColorHint="@color/colorGray"
+                android:textSize="12sp"
+                tools:ignore="RtlSymmetry" />
+
+            <EditText
+                android:id="@+id/telephone"
+
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_below="@+id/mobile"
+                android:layout_margin="10dp"
+                android:background="@drawable/edittext_border"
+                android:fontFamily="@font/iransansmobile"
+                android:hint="تلفن ثابت"
+                android:inputType="number"
+                android:padding="10dp"
+                android:paddingEnd="10dp"
+                android:textColor="@color/colorblack"
+                android:textColorHint="@color/colorGray"
+                android:textSize="12sp"
+                tools:ignore="RtlSymmetry" />
+
+
+            <EditText
+                android:id="@+id/code_melli"
+
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_below="@+id/telephone"
+                android:layout_margin="10dp"
+                android:background="@drawable/edittext_border"
+                android:fontFamily="@font/iransansmobile"
+                android:hint="کد ملی"
+                android:inputType="number"
+                android:padding="10dp"
+                android:paddingEnd="10dp"
+                android:textColor="@color/colorblack"
+                android:textColorHint="@color/colorGray"
+                android:textSize="12sp"
+                tools:ignore="RtlSymmetry" />
+
+
+            <EditText
+                android:id="@+id/address"
+                android:layout_width="match_parent"
+
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/code_melli"
+                android:layout_margin="10dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/edittext_border"
+                android:fontFamily="@font/iransansmobile"
+                android:hint="آدرس دقیق"
+                android:lines="4"
+
+                android:minLines="3"
+                android:padding="10dp"
+                android:scrollbars="vertical"
+                android:textColor="@color/colorblack"
+                android:textColorHint="@color/colorGray"
+                android:textSize="12sp" />
+
+
+        </RelativeLayout>
+    </ScrollView>
+
+    <ProgressBar
+        android:id="@+id/edit_profile_progressbar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true"
+        android:elevation="4dp"
+        android:visibility="gone" />
+
+    <Button
+        android:id="@+id/edit_profile_btn"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="0dp"
+
+        android:background="@color/colorPrimary"
+        android:fontFamily="@font/iransansmobile"
+        android:text="ویرایش اطلاعات"
+        android:textColor="@color/colorWhite"
+        android:textSize="14sp" />
+</RelativeLayout>

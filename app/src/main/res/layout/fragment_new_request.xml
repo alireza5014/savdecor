@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorLightGray"
+    android:layoutDirection="rtl"
+    android:textDirection="rtl"
+    tools:context=".Fragment.NewRequestFragment">
+<include layout="@layout/action_bar"/>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="50dp">
+
+        <LinearLayout
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="70dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:orientation="vertical">
+
+            <com.jaredrummler.materialspinner.MaterialSpinner
+                android:id="@+id/request_type_spinner"
+
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@drawable/edittext_border"
+
+                android:textColor="@color/colorblack"
+                android:textDirection="rtl"
+                android:textSize="12sp" />
+
+            <EditText
+                android:textColor="@color/colorblack"
+                android:id="@+id/state"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/edittext_border"
+                android:fontFamily="@font/iransansmobile"
+                android:hint="استان"
+                android:padding="10dp"
+                android:textColorHint="@color/colorGray"
+
+                android:textSize="12sp" />
+
+            <EditText
+                android:textColor="@color/colorblack"
+
+                android:id="@+id/city"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/edittext_border"
+                android:fontFamily="@font/iransansmobile"
+                android:hint="شهر"
+                android:padding="10dp"
+                android:textColorHint="@color/colorGray"
+                android:textSize="12sp" />
+
+
+            <EditText
+                android:textColor="@color/colorblack"
+
+                android:id="@+id/description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/edittext_border"
+                android:fontFamily="@font/iransansmobile"
+                android:hint="توضیحات"
+                android:lines="4"
+                android:minLines="3"
+                android:padding="10dp"
+                android:scrollbars="vertical"
+                android:textColorHint="@color/colorGray"
+                android:textSize="12sp" />
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <ProgressBar
+        android:id="@+id/request_btn_progressbar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+
+
+        android:elevation="4dp"
+        android:visibility="gone" />
+
+    <Button
+        android:id="@+id/request_btn"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="0dp"
+
+
+        android:background="@color/colorPrimary"
+        android:fontFamily="@font/iransansmobile"
+        android:text="ثبت درخواست"
+        android:textColor="@color/colorWhite"
+        android:textSize="14sp" />
+</FrameLayout>

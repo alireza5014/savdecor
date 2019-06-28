@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorLightGray"
+    android:orientation="vertical"
+    tools:context=".Activities.SampleActivity">
+
+    <include layout="@layout/action_bar" />
+
+
+    <EditText
+        android:fontFamily="@font/iransansmobile"
+        android:padding="10dp"
+        android:background="@drawable/edittext_border"
+        android:imeOptions="actionSearch"
+        android:inputType="text"
+        android:id="@+id/search_input"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_margin="10dp"
+        android:hint="@string/search"
+        android:textColor="@color/colorblack"
+        android:textColorHint="@color/colorGray"
+        android:textSize="15sp" />
+
+    <android.support.v7.widget.RecyclerView
+
+        android:id="@+id/rcv_search_list_id"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </android.support.v7.widget.RecyclerView>
+
+</LinearLayout>
