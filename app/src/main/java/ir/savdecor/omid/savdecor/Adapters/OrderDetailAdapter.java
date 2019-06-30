@@ -9,6 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -18,21 +20,20 @@ import com.bumptech.glide.request.target.Target;
 
 import java.util.List;
 
-import ir.savdecor.omid.savdecor.Activities.ProductActivity;
-import ir.savdecor.omid.savdecor.Models.CommentList;
-import ir.savdecor.omid.savdecor.Models.SampleList;
+import ir.savdecor.omid.savdecor.Activities.ProductDetailActivity;
+import ir.savdecor.omid.savdecor.Models.OrderDetailList;
+import ir.savdecor.omid.savdecor.Models.ProductList;
 import ir.savdecor.omid.savdecor.R;
-import ir.savdecor.omid.savdecor.Utilities.CircleTransform;
 import ir.savdecor.omid.savdecor.Utilities.Helper;
 
-public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.MyViewHolder> {
+public class OrderDetailAdapter extends RecyclerView.Adapter<OrderDetailAdapter.MyViewHolder> {
 
 
     private Context context;
 
-    private List<CommentList> data;
+    private List<OrderDetailList> data;
 
-    public CommentAdapter(Context context, List data) {
+    public OrderDetailAdapter(Context context, List data) {
         this.context = context;
         this.data = data;
 
@@ -41,25 +42,28 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.MyViewHo
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        final View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.comment_item, parent, false);
+        final View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.order_detail_item, parent, false);
 
 
-        return new CommentAdapter.MyViewHolder(view);
+        return new OrderDetailAdapter.MyViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final MyViewHolder holder, int position) {
 
-        final CommentList commentList = data.get(position);
+        final OrderDetailList orderDetailList = data.get(position);
 
-        holder.comment.setText(commentList.getMessage());
-        holder.created_at.setText(commentList.getCreated_at());
+        holder.id.setText(orderDetailList.getId()+"");
+        holder.title.setText(orderDetailList.getTitle());
+        holder.price.setText(orderDetailList.getPrice()+" تومان ");
+        holder.count.setText(orderDetailList.getCount()+" عدد ");
+        holder.total_price.setText(orderDetailList.getCount()*orderDetailList.getPrice()+" تومان ");
 
         Glide.with(context)
-                .load(Helper.basUrl + commentList.getImage_path())
+                .load(Helper.basUrl + orderDetailList.getImage_path())
                 .thumbnail(0.2f)
                 // .centerCrop()
-                .transform(new CircleTransform(context))
+//                .transform(new CircleTransform(context))
                 // .error(R.drawable.profile)
                 //   .transform( new BlurTransformation( context ),new CircleTransform(context) )
 
@@ -79,11 +83,6 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.MyViewHo
                 .placeholder(Color.BLUE)
                 .crossFade()
                 .into(holder.image_path);
-
-
-        holder.fullname.setText(commentList.getFname() + " " + commentList.getLname());
-
-
     }
 
     @Override
@@ -94,16 +93,20 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.MyViewHo
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
-        public TextView fullname, created_at, comment;
-        public ImageView image_path;
+        public TextView id,title,price,count,total_price;
+public ImageView image_path;
+
 
         public MyViewHolder(View itemView) {
 
             super(itemView);
-            fullname = itemView.findViewById(R.id.fullname);
-            comment = itemView.findViewById(R.id.comment_txt);
-            created_at = itemView.findViewById(R.id.created_at);
+            id = itemView.findViewById(R.id.id);
+            title = itemView.findViewById(R.id.title);
+            price = itemView.findViewById(R.id.price);
+            total_price = itemView.findViewById(R.id.total_price);
+            count = itemView.findViewById(R.id.count);
             image_path = itemView.findViewById(R.id.image_path);
+
         }
     }
 }

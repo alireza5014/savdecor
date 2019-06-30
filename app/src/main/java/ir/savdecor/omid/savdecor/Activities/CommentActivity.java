@@ -66,6 +66,7 @@ public class CommentActivity extends AppCompatActivity {
 
         final Intent intent = getIntent();
         product_id = intent.getIntExtra("product_id", 0);
+
         product_title = intent.getStringExtra("product_title");
 
 
@@ -79,7 +80,14 @@ public class CommentActivity extends AppCompatActivity {
         new_comment_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                Bundle bundle = new Bundle();
+                bundle.putInt("product_id", product_id);
+
+
                 NewCommentFragment fragment = new NewCommentFragment();
+                fragment.setArguments(bundle);
+
                 FragmentTransaction t = getSupportFragmentManager().beginTransaction();
 //                t.setCustomAnimations(R.anim.inter_anime, R.anim.exit_to_left_);
                 t.replace(R.id.new_comment_id, fragment);
@@ -151,7 +159,7 @@ public class CommentActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
                         // response
-
+Log.e("__)_",product_id+"");
                         JSONObject obj = null;
                         try {
                             obj = new JSONObject(response);
@@ -163,16 +171,22 @@ public class CommentActivity extends AppCompatActivity {
 
                                 try {
                                     JSONObject jsonObject = responseData.getJSONObject(i);
+                                    JSONObject user = jsonObject.getJSONObject("user");
                                     CommentList c = new CommentList();
                                     c.setId(jsonObject.getInt("id"));
                                     c.setMessage(jsonObject.getString("message"));
                                     c.setCreated_at(jsonObject.getString("created_at"));
+                                    c.setFname(user.getString("fname"));
+                                    c.setLname(user.getString("lname"));
+                                    c.setImage_path(user.getString("image_path"));
 
                                     data.add(c);
 
 
                                 } catch (JSONException e) {
                                     e.printStackTrace();
+
+
                                     //   progressDialog2.dismiss();
                                 }
 

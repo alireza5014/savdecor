@@ -138,8 +138,9 @@ public class OrderActivity extends AppCompatActivity {
                                         OrderList c = new OrderList();
 
                                         c.setId(jsonObject.getInt("id"));
-                                        c.setTotla_price(jsonObject.getInt("total_price"));
+                                        c.setTotal_price(jsonObject.getInt("total_price"));
                                         c.setCreated_at(jsonObject.getString("created_at"));
+                                        c.setProducts(jsonObject.getJSONArray("products"));
 
 
                                         data.add(c);

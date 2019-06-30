@@ -29,8 +29,8 @@ import saman.zamani.persiandate.PersianDateFormat;
 public final class Helper  {
 
 //    public static String basUrl = "http://192.168.43.72/savdecor/public/";
-    public static String basUrl = "http://192.168.43.218/savdecor/public/";
-//    public static String basUrl = "http://www.savdecor.ir/";
+//    public static String basUrl = "http://192.168.43.218/savdecor/public/";
+    public static String basUrl = "http://www.savdecor.ir/";
     public static String socketURL = "http://192.168.43.72:8005";
     public static String getVersionApp = "1.0.0";
     public static String PACKAGE_NAME = "com.example.alireza.dalang";

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/order_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_centerHorizontal="true"
+    android:layout_centerVertical="true"
+    android:layout_gravity="right"
+    android:background="@color/colorWhite"
+
+    android:layout_margin="1dp"
+    android:gravity="right"
+    android:layoutDirection="rtl"
+    android:orientation="horizontal"
+    android:textDirection="rtl">
+
+    <TextView
+        android:id="@+id/id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/iransansmobile"
+
+
+        android:gravity="right"
+        android:padding="5dp"
+        android:text="5"
+        android:textColor="@color/colorblack"
+        android:textSize="13dp"
+        android:visibility="gone" />
+
+    <ImageView
+        android:id="@+id/image_path"
+        android:layout_width="70dp"
+        android:layout_height="80dp"
+
+        />
+
+    <TextView
+        android:layout_marginTop="10dp"
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toLeftOf="@id/image_path"
+
+
+        android:fontFamily="@font/iransansmobile"
+
+        android:padding="5dp"
+        android:text="edwsd"
+        android:textColor="@color/colorblack"
+        android:textSize="12sp" />
+
+    <TextView
+        android:layout_marginTop="10dp"
+
+        android:id="@+id/price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toLeftOf="@id/title"
+
+
+        android:fontFamily="@font/iransansmobile"
+
+        android:padding="5dp"
+        android:text="1300"
+        android:textColor="@color/colorblack"
+        android:textSize="10sp" />
+
+
+    <TextView
+        android:id="@+id/count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/title"
+
+        android:layout_toLeftOf="@id/image_path"
+        android:fontFamily="@font/iransansmobile"
+
+        android:padding="5dp"
+        android:text="13"
+        android:textColor="@color/colorblack"
+        android:textSize="10sp" />
+
+    <TextView
+        android:id="@+id/total_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/title"
+        android:layout_toLeftOf="@id/count"
+
+
+        android:fontFamily="@font/iransansmobile"
+
+        android:padding="5dp"
+        android:text="1300"
+        android:textColor="@color/colorblack"
+        android:textSize="10sp" />
+</RelativeLayout>

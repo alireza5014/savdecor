@@ -9,7 +9,7 @@
     android:layout_centerVertical="true"
     android:layout_gravity="center"
     android:layout_margin="1dp"
-    android:gravity="center"
+    android:gravity="right"
     android:layoutDirection="rtl"
     android:orientation="vertical"
     android:textDirection="rtl">
@@ -24,69 +24,85 @@
         app:cardBackgroundColor="@color/colorWhite"
         app:cardCornerRadius="3dp">
 
-        <LinearLayout
-            android:layout_width="match_parent"
+<LinearLayout
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center">
+
+
+        <TextView
+            android:id="@+id/id"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center">
+
+            android:layout_weight=".1"
+
+            android:fontFamily="@font/iransansmobile"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="5"
+            android:textColor="@color/colorblack"
+            android:textSize="13dp" />
+
+        <TextView
+            android:id="@+id/order_no"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight=".3"
 
 
-            <TextView
-                android:id="@+id/id"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+            android:fontFamily="@font/iransansmobile"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="50,000"
+            android:textColor="@color/colorblack"
+            android:textSize="13dp" />
 
-                android:layout_weight=".1"
-
-                android:fontFamily="@font/iransansmobile"
-                android:gravity="center"
-                android:padding="10dp"
-                android:text="5"
-                android:textColor="@color/colorblack"
-                android:textSize="13dp" />
-
-            <TextView
-                android:id="@+id/order_no"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight=".3"
+        <TextView
+            android:id="@+id/total_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight=".3"
 
 
-                android:fontFamily="@font/iransansmobile"
-                android:gravity="center"
-                android:padding="10dp"
-                android:text="50,000"
-                android:textColor="@color/colorblack"
-                android:textSize="13dp" />
+            android:fontFamily="@font/iransansmobile"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="50,000"
+            android:textColor="@color/colorblack"
+            android:textSize="13dp" />
 
-            <TextView
-                android:id="@+id/total_price"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight=".3"
+        <TextView
+            android:id="@+id/created_at"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight=".3"
 
-
-                android:fontFamily="@font/iransansmobile"
-                android:gravity="center"
-                android:padding="10dp"
-                android:text="50,000"
-                android:textColor="@color/colorblack"
-                android:textSize="13dp" />
-
-            <TextView
-                android:id="@+id/created_at"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight=".3"
-
-                android:fontFamily="@font/iransansmobile"
-                android:gravity="center"
-                android:padding="10dp"
-                android:text="50,000"
-                android:textColor="@color/colorblack"
-                android:textSize="13dp" />
+            android:fontFamily="@font/iransansmobile"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="50,000"
+            android:textColor="@color/colorblack"
+            android:textSize="13dp" />
 
 
-        </LinearLayout>
+    </LinearLayout>
 
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rcv_order_detail_list_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+
+        />
+</LinearLayout>
     </android.support.v7.widget.CardView>
+
+
 </RelativeLayout>

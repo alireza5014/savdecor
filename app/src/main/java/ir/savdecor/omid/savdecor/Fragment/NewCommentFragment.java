@@ -44,6 +44,7 @@ public class NewCommentFragment extends Fragment {
 
     public Button cancel_comment_btn, insert_comment_btn;
     public EditText message;
+    public int product_id;
 
     public NewCommentFragment() {
     }
@@ -54,6 +55,13 @@ public class NewCommentFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
 
         v = inflater.inflate(R.layout.fragment_new_comment, container, false);
+
+
+        Bundle bundle = this.getArguments();
+        if (bundle != null) {
+            product_id = bundle.getInt("product_id", 0);
+        }
+
         cancel_comment_btn = v.findViewById(R.id.cancel_comment_btn);
         insert_comment_btn = v.findViewById(R.id.insert_comment_btn);
         message = v.findViewById(R.id.message);
@@ -134,7 +142,7 @@ public class NewCommentFragment extends Fragment {
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<String, String>();
 
-                params.put("product_id", "61");
+                params.put("product_id", product_id + "");
                 params.put("message", message.getText().toString());
                 params.put("reply_id", "0");
 

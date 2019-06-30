@@ -1,16 +1,33 @@
 package ir.savdecor.omid.savdecor.Models;
 
+import org.json.JSONArray;
+
 public class OrderList {
-    private int id, count,totla_price;
+    private int id, count, total_price;
     private String created_at, code, title, image_path;
 
-    public int getTotla_price() {
-        return totla_price;
+
+
+    private JSONArray products;
+
+
+    public int getTotal_price() {
+        return total_price;
     }
 
-    public void setTotla_price(int totla_price) {
-        this.totla_price = totla_price;
+    public void setTotal_price(int total_price) {
+        this.total_price = total_price;
     }
+
+    public JSONArray getProducts() {
+        return products;
+    }
+
+    public void setProducts(JSONArray products) {
+        this.products = products;
+    }
+
+
 
     public int getId() {
         return id;
