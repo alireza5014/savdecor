@@ -2,11 +2,27 @@ package ir.savdecor.omid.savdecor.Models;
 
 public class CardList {
 
-    private int id;
+    private int id,count;
     private int order_id;
 private  String title;
 private  String image_path;
-private  String price;
+private  String price,totalPrice;
+
+    public String getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(String totalPrice) {
+        this.totalPrice = totalPrice;
+    }
+
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
+    }
 
     public int getOrder_id() {
         return order_id;

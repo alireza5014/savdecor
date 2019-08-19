@@ -21,8 +21,8 @@ import com.android.volley.Response;
 import com.android.volley.error.VolleyError;
 import com.android.volley.request.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.stfalcon.smsverifycatcher.OnSmsCatchListener;
-import com.stfalcon.smsverifycatcher.SmsVerifyCatcher;
+//import com.stfalcon.smsverifycatcher.OnSmsCatchListener;
+//import com.stfalcon.smsverifycatcher.SmsVerifyCatcher;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -47,7 +47,7 @@ public class VerifyActivity extends AppCompatActivity {
     public TextView edit_number, sent_txt;
 
 
-    public SmsVerifyCatcher smsVerifyCatcher;
+//    public SmsVerifyCatcher smsVerifyCatcher;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,14 +75,14 @@ public class VerifyActivity extends AppCompatActivity {
         verify_progressbar = findViewById(R.id.verify_progressbar);
         sms_code = findViewById(R.id.et_code);
 
-        smsVerifyCatcher = new SmsVerifyCatcher(this, new OnSmsCatchListener<String>() {
-            @Override
-            public void onSmsCatch(String message) {
-                String code = parseCode(message);//Parse verification code
-                sms_code.setText(code);//set code in edit text
-                //then you can send verification code to server
-            }
-        });
+//        smsVerifyCatcher = new SmsVerifyCatcher(this, new OnSmsCatchListener<String>() {
+//            @Override
+//            public void onSmsCatch(String message) {
+//                String code = parseCode(message);//Parse verification code
+//                sms_code.setText(code);//set code in edit text
+//                //then you can send verification code to server
+//            }
+//        });
 
 
         verify_btn.setOnClickListener(new View.OnClickListener() {
@@ -94,31 +94,31 @@ public class VerifyActivity extends AppCompatActivity {
         });
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        smsVerifyCatcher.onStart();
-
-        userVerify(getApplicationContext(), Helper.basUrl + "api/userVerify", message_id + "", sms_code.getText().toString(), mobile, password);
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        smsVerifyCatcher.onStop();
-        Toast.makeText(getApplicationContext(), message_id + "stoooop", Toast.LENGTH_SHORT).show();
-
-    }
+//    @Override
+//    protected void onStart() {
+//        super.onStart();
+//        smsVerifyCatcher.onStart();
+//
+//        userVerify(getApplicationContext(), Helper.basUrl + "api/userVerify", message_id + "", sms_code.getText().toString(), mobile, password);
+//    }
+//
+//    @Override
+//    protected void onStop() {
+//        super.onStop();
+//        smsVerifyCatcher.onStop();
+//        Toast.makeText(getApplicationContext(), message_id + "stoooop", Toast.LENGTH_SHORT).show();
+//
+//    }
 
     /**
      * need for Android 6 real time permissions
      */
 
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        smsVerifyCatcher.onRequestPermissionsResult(requestCode, permissions, grantResults);
-    }
+//    @Override
+//    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+//        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+//        smsVerifyCatcher.onRequestPermissionsResult(requestCode, permissions, grantResults);
+//    }
 
     private String parseCode(String message) {
         Pattern p = Pattern.compile("\\b\\d{5}\\b");
@@ -176,6 +176,8 @@ public class VerifyActivity extends AppCompatActivity {
                                 editor.commit();
 
                                 Intent i = new Intent(context, MainActivity.class);
+                                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
                                 startActivity(i);
                                 finish();
 

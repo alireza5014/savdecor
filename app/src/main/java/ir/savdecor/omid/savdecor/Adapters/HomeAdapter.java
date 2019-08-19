@@ -104,6 +104,8 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.MyViewHolder> 
 
                 i.putExtra("service_id", homeList.getId());
                 i.putExtra("service_title", homeList.getTitle());
+                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
                 context.startActivity(i);
 
             }

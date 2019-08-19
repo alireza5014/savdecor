@@ -58,7 +58,7 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.MyViewHo
         Glide.with(context)
                 .load(Helper.basUrl + commentList.getImage_path())
                 .thumbnail(0.2f)
-                // .centerCrop()
+                  .centerCrop()
                 .transform(new CircleTransform(context))
                 // .error(R.drawable.profile)
                 //   .transform( new BlurTransformation( context ),new CircleTransform(context) )

@@ -73,6 +73,8 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
 
                 i.putExtra("service_id", productListList.getId());
                 i.putExtra("service_title", productListList.getTitle());
+                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
                 context.startActivity(i);
             }
         });

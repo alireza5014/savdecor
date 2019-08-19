@@ -82,7 +82,9 @@ public class SampleActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                  Intent i=new Intent(getApplicationContext(),SearchActivity.class);
-                 startActivity(i);
+                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+                startActivity(i);
             }
         });
 
@@ -91,7 +93,9 @@ public class SampleActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                  Intent i=new Intent(getApplicationContext(),CardActivity.class);
-                 startActivity(i);
+                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+                startActivity(i);
             }
         });
 

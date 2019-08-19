@@ -5,8 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorLightGray"
-    android:orientation="vertical"
     android:layoutDirection="rtl"
+    android:orientation="vertical"
     tools:context=".Activities.ProductDetailActivity">
 
     <include layout="@layout/action_bar" />
@@ -29,30 +29,41 @@
                 android:layout_height="200dp"
                 android:layout_centerHorizontal="true"
 
-                android:scaleType="fitXY"
-                />
+                android:scaleType="fitXY" />
 
+            <TextView
+                android:id="@+id/discount_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="-40dp"
+                android:layout_toStartOf="@id/image_path"
+                android:background="@color/colorGreen"
+                android:fontFamily="@font/iransansmobile"
+                android:padding="3dp"
+                android:textColor="@color/colorWhite"
+                android:textSize="12sp"
+                android:visibility="gone" />
 
             <!--<ImageView-->
-               <!--android:id="@+id/image_path1"-->
+            <!--android:id="@+id/image_path1"-->
 
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="200dp"-->
-                <!--android:layout_centerHorizontal="true"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="200dp"-->
+            <!--android:layout_centerHorizontal="true"-->
 
-                <!--android:scaleType="fitXY"-->
-                <!--/>-->
+            <!--android:scaleType="fitXY"-->
+            <!--/>-->
 
             <ProgressBar
                 android:id="@+id/product_detail_progress"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:layout_marginTop="70dp"
                 android:layout_centerHorizontal="true"
+                android:layout_marginTop="70dp"
 
                 android:layout_marginRight="50dp"
                 android:visibility="visible" />
-
 
 
             <ImageView
@@ -102,33 +113,173 @@
 
                 app:cardCornerRadius="5dp">
 
-                <TextView
-                    android:id="@+id/price"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:fontFamily="@font/iransansmobile"
-                    android:gravity="center"
-                    android:text=""
-                    android:textColor="@color/colorGreen"
-                    android:textDirection="rtl"
-                    android:textSize="17dp" />
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/discount_price"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:layout_weight=".5"
+                        android:fontFamily="@font/iransansmobile"
+                        android:gravity="center"
+                        android:text="22222"
+                        android:textColor="@color/colorGreen"
+                        android:textDirection="rtl"
+                        android:textSize="17dp"
+                        android:visibility="gone" />
 
 
-                <Button
+                    <TextView
+                        android:id="@+id/price"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:layout_weight=".5"
+                        android:fontFamily="@font/iransansmobile"
+                        android:gravity="center"
+                        android:text="160000"
+                        android:textColor="@color/colorGreen"
+                        android:textDirection="rtl"
+                        android:textSize="17dp" />
 
-                    android:id="@+id/add_to_card_btn"
+
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/title"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginTop="60dp"
-                    android:layout_marginRight="15dp"
-                    android:layout_marginBottom="15dp"
-                    android:background="@color/colorGreen"
-                    android:fontFamily="@font/iransansmobile"
-                    android:text="@string/add_to_card"
-                    android:textSize="18sp" />
+                    android:orientation="horizontal">
+
+                    <Button
+
+                        android:id="@+id/add_to_card_btn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+
+                        android:layout_marginTop="60dp"
+                        android:layout_marginRight="15dp"
+                        android:layout_marginBottom="15dp"
+                        android:layout_weight=".9"
+                        android:background="@color/colorGreen"
+                        android:fontFamily="@font/iransansmobile"
+                        android:text="@string/add_to_card"
+                        android:textSize="18sp" />
+                <LinearLayout
+                    android:id="@+id/unit_box"
+
+                    android:visibility="gone"
+                    android:layout_marginTop="10dp"
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:layout_marginEnd="10dp"
+
+                        android:id="@+id/edt_width"
+                        android:layout_width="50dp"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="1dp"
+                        android:layout_marginTop="60dp"
+                        android:layout_marginRight="1dp"
+                        android:layout_marginBottom="15dp"
+                        android:background="@drawable/edittext_border"
+                        android:fontFamily="@font/iransansmobile"
+                        android:gravity="center"
+                        android:inputType="number"
+                        android:textSize="12sp"
+                        android:hint="عرض"
+                        android:textColorHint="@color/colorGray"
+                        android:textColor="@color/solid_black" />
+
+                    <EditText
+                        android:layout_marginEnd="10dp"
+                        android:id="@+id/edt_height"
+                        android:layout_width="50dp"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="1dp"
+                        android:layout_marginTop="60dp"
+                        android:layout_marginRight="1dp"
+                        android:layout_marginBottom="15dp"
+                        android:background="@drawable/edittext_border"
+                        android:fontFamily="@font/iransansmobile"
+                        android:gravity="center"
+                        android:inputType="number"
+                       android:hint="طول"
+                        android:textColorHint="@color/colorGray"
+                        android:textSize="12sp"
+
+                        android:textColor="@color/solid_black" />
+
+                </LinearLayout>
+
+                 <LinearLayout
+
+                     android:id="@+id/unit_count_and_meter"
+                      android:visibility="gone"
+                     android:layout_marginTop="10dp"
+
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content">
+
+
+                     <Button
+
+
+                         android:id="@+id/mines"
+                         android:layout_width="30dp"
+                         android:layout_height="30dp"
+
+                         android:layout_marginLeft="5dp"
+                         android:layout_marginTop="60dp"
+                         android:layout_marginRight="5dp"
+                         android:layout_marginBottom="15dp"
+                         android:background="@color/colorGreen"
+                         android:fontFamily="@font/iransansmobile"
+                         android:text="-"
+                         android:textSize="20sp" />
+
+                     <EditText
+                         android:id="@+id/edt_count"
+                         android:layout_width="50dp"
+                         android:layout_height="30dp"
+                         android:layout_marginLeft="1dp"
+                         android:layout_marginTop="60dp"
+                         android:layout_marginRight="1dp"
+                         android:layout_marginBottom="15dp"
+                         android:background="@drawable/edittext_border"
+                         android:fontFamily="@font/iransansmobile"
+                         android:gravity="center"
+                         android:inputType="number"
+                         android:text="1"
+
+                         android:textColor="@color/solid_black" />
+
+                     <Button
+
+
+                         android:id="@+id/plus"
+                         android:layout_width="30dp"
+
+                         android:layout_height="30dp"
+
+
+                         android:layout_marginLeft="5dp"
+                         android:layout_marginTop="60dp"
+                         android:layout_marginRight="5dp"
+                         android:layout_marginBottom="15dp"
+                         android:background="@color/colorGreen"
+                         android:fontFamily="@font/iransansmobile"
+                         android:text="+"
+                         android:textSize="20sp" />
+                 </LinearLayout>
+
+                </LinearLayout>
             </android.support.v7.widget.CardView>
 
             <android.support.v7.widget.CardView

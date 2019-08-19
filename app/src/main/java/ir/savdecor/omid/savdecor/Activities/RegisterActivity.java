@@ -91,6 +91,8 @@ public class RegisterActivity extends AppCompatActivity {
                                 i.putExtra("message_id", message_id);
                                 i.putExtra("mobile", mobile);
                                 i.putExtra("password", password);
+                                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
                                 startActivity(i);
                                 Toast.makeText(context, message, Toast.LENGTH_LONG).show();
                             } else {

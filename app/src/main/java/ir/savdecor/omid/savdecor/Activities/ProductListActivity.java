@@ -73,6 +73,9 @@ public class ProductListActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getApplicationContext(), SearchActivity.class);
+
+                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
                 startActivity(i);
             }
         });
@@ -82,6 +85,10 @@ public class ProductListActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getApplicationContext(), CardActivity.class);
+                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
                 startActivity(i);
             }
         });

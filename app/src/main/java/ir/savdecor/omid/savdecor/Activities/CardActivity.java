@@ -90,6 +90,8 @@ public class CardActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getApplicationContext(), SearchActivity.class);
+                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
                 startActivity(i);
             }
         });
@@ -99,6 +101,8 @@ public class CardActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getApplicationContext(), CardActivity.class);
+                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
                 startActivity(i);
             }
         });
@@ -188,12 +192,25 @@ public class CardActivity extends AppCompatActivity {
 
                                     try {
                                         JSONObject jsonObject = responseData.getJSONObject(i);
+
+
+                                        JSONObject pivot = jsonObject.getJSONObject("pivot");
+
                                         CardList c = new CardList();
 
                                         c.setId(jsonObject.getInt("id"));
                                         c.setTitle(jsonObject.getString("title"));
                                         c.setImage_path(jsonObject.getString("image_path"));
-                                        c.setPrice(jsonObject.getString("price"));
+
+                                        int price = jsonObject.getInt("price");
+                                        int count = pivot.getInt("count");
+                                        int total_price = price * count;
+
+                                        c.setPrice(price + "");
+
+                                        c.setTotalPrice(total_price + "");
+
+                                        c.setCount(count);
 
                                         data.add(c);
 

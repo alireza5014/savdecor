@@ -72,6 +72,8 @@ public class SampleAdapter extends RecyclerView.Adapter<SampleAdapter.MyViewHold
                 i.putExtra("service_id", sampleList.getService_id());
                 i.putExtra("sample_id", sampleList.getId());
                 i.putExtra("sample_title", sampleList.getTitle());
+                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
                 context.startActivity(i);
 
             }

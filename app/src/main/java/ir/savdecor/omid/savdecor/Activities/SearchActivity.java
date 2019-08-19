@@ -71,6 +71,8 @@ public class SearchActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getApplicationContext(), SearchActivity.class);
+                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
                 startActivity(i);
             }
         });
@@ -80,6 +82,8 @@ public class SearchActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getApplicationContext(), CardActivity.class);
+                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
                 startActivity(i);
             }
         });

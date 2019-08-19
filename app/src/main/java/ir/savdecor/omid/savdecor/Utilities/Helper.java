@@ -1,11 +1,17 @@
 package ir.savdecor.omid.savdecor.Utilities;
 
+import android.app.Activity;
 import android.app.Fragment;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.preference.PreferenceManager;
 
+import com.afollestad.materialdialogs.DialogAction;
+import com.afollestad.materialdialogs.GravityEnum;
+import com.afollestad.materialdialogs.MaterialDialog;
+import com.afollestad.materialdialogs.Theme;
 import com.muddzdev.styleabletoastlibrary.StyleableToast;
 
 import java.io.File;
@@ -17,6 +23,10 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Random;
 
+import ir.savdecor.omid.savdecor.Activities.AboutUsActivity;
+import ir.savdecor.omid.savdecor.Activities.LoginActivity;
+import ir.savdecor.omid.savdecor.Activities.ProductDetailActivity;
+import ir.savdecor.omid.savdecor.Activities.RegisterActivity;
 import ir.savdecor.omid.savdecor.Fragment.NewRequestFragment;
 import ir.savdecor.omid.savdecor.R;
 import saman.zamani.persiandate.PersianDate;
@@ -26,9 +36,9 @@ import saman.zamani.persiandate.PersianDateFormat;
  * Created by alireza on 2018/10/22.
  */
 
-public final class Helper  {
+public final class Helper {
 
-//    public static String basUrl = "http://192.168.43.72/savdecor/public/";
+    //    public static String basUrl = "http://192.168.43.72/savdecor/public/";
 //    public static String basUrl = "http://192.168.43.218/savdecor/public/";
     public static String basUrl = "http://www.savdecor.ir/";
     public static String socketURL = "http://192.168.43.72:8005";
@@ -41,6 +51,8 @@ public final class Helper  {
 
 
 
+
+
     public static String getUserToken(Context context) {
 
 
@@ -50,6 +62,14 @@ public final class Helper  {
 
     }
 
+    public static int getDiscountValue(String price, String discount) {
+
+        int temp, discount_price1;
+        temp = Integer.parseInt(discount) * Integer.parseInt(price) / 100;
+        discount_price1 = Integer.parseInt(price) - temp;
+
+        return discount_price1;
+    }
 
     public static void message(Context context, String message) {
 
@@ -67,6 +87,7 @@ public final class Helper  {
 
 
     }
+
     public static String CreateRandomString(int string) {
 
         Random random;
@@ -99,13 +120,13 @@ public final class Helper  {
 
 
     public static boolean internetIsConnected() {
-//return  true;
-        try {
-            String command = "ping -c 1 google.com";
-            return (Runtime.getRuntime().exec(command).waitFor() == 0);
-        } catch (Exception e) {
-            return false;
-        }
+        return true;
+//        try {
+//            String command = "ping -c 1 google.com";
+//            return (Runtime.getRuntime().exec(command).waitFor() == 0);
+//        } catch (Exception e) {
+//            return false;
+//        }
     }
 
 
@@ -171,12 +192,12 @@ public final class Helper  {
 
     public static String getFullName(Context context) {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
-        return preferences.getString("fname", "")+" "+preferences.getString("lname", "");
+        return preferences.getString("fname", "") + " " + preferences.getString("lname", "");
     }
 
     public static String getMobile(Context context) {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
-        return preferences.getString("mobile","");
+        return preferences.getString("mobile", "");
     }
 
     public static void Logout(Context context) {
@@ -205,8 +226,6 @@ public final class Helper  {
     }
 
 
-
-
     public static String currentShamsiTime() {
         PersianDate pdate = new PersianDate();
         PersianDateFormat pdformater1 = new PersianDateFormat("H:i:s");
@@ -217,9 +236,8 @@ public final class Helper  {
         String pattern = "Y-m-d H:i:s";
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
         String date = simpleDateFormat.format(new Date());
-        return  date;
+        return date;
     }
-
 
 
 }

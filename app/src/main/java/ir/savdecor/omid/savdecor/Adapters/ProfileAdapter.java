@@ -93,7 +93,10 @@ public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.MyViewHo
 
                 }
                 if (intent != null) {
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
                     context.startActivity(intent);
+
                 }
 
                 Helper.message(context, position + "");

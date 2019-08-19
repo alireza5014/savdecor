@@ -5,10 +5,13 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.text.InputFilter;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
@@ -45,6 +48,7 @@ import ir.savdecor.omid.savdecor.Models.CardList;
 import ir.savdecor.omid.savdecor.Models.ProductList;
 import ir.savdecor.omid.savdecor.R;
 import ir.savdecor.omid.savdecor.Utilities.Helper;
+import ir.savdecor.omid.savdecor.Utilities.MinMaxFilter;
 
 public class CardAdapter extends RecyclerView.Adapter<CardAdapter.MyViewHolder> {
 
@@ -74,34 +78,91 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.MyViewHolder> 
         final CardList cardList = data.get(position);
 
 
-        List<String> list = new ArrayList<>();
-        list.add("1");
-        list.add("2");
-        list.add("3");
-        list.add("4");
-        list.add("5");
-        list.add("6");
-        list.add("7");
-        list.add("8");
-        list.add("9");
-        list.add("10");
-        holder.count_spinner.setItems(list);
-        holder.count_spinner.setOnItemSelectedListener(new MaterialSpinner.OnItemSelectedListener<String>() {
+//        List<String> list = new ArrayList<>();
+//        list.add("1");
+//        list.add("2");
+//        list.add("3");
+//        list.add("4");
+//        list.add("5");
+//        list.add("6");
+//        list.add("7");
+//        list.add("8");
+//        list.add("9");
+//        list.add("10");
+//        holder.count_spinner.setItems(list);
+//        holder.count_spinner.setOnItemSelectedListener(new MaterialSpinner.OnItemSelectedListener<String>() {
+//            @Override
+//            public void onItemSelected(MaterialSpinner view, int position, long id, String item) {
+//                Toast.makeText(context, id + "Clicked " + item, Toast.LENGTH_LONG).show();
+//                String total_price = holder.price.getText().toString().replace(",", "");
+//                int tp = Integer.parseInt(total_price)*Integer.parseInt(item);
+//
+//                holder.total_price.setText(tp+"");
+//
+//                change_product_count(cardList.getId(),item);
+//            }
+//        });
+
+
+        holder.card_plus.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onItemSelected(MaterialSpinner view, int position, long id, String item) {
-                Toast.makeText(context, id + "Clicked " + item, Toast.LENGTH_LONG).show();
+            public void onClick(View v) {
+                int edt_count_;
+                String edt_text = holder.card_edt_count.getText().toString();
+                try {
+                    edt_count_ = Integer.parseInt(edt_text);
+                } catch (Exception e) {
+                    edt_count_ = 1;
+                }
+                if(edt_count_>0){
+                    edt_count_ += 1;
+
+                }
+                holder.card_edt_count.setText(edt_count_ + "");
+
+
                 String total_price = holder.price.getText().toString().replace(",", "");
-                int tp = Integer.parseInt(total_price)*Integer.parseInt(item);
+                int tp = Integer.parseInt(total_price)*edt_count_;
 
                 holder.total_price.setText(tp+"");
 
-                change_product_count(cardList.getId(),item);
+                change_product_count(cardList.getId(),edt_count_+"");
             }
         });
 
+
+        holder.card_mines.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int edt_count_;
+                String edt_text = holder.card_edt_count.getText().toString();
+                try {
+                    edt_count_ = Integer.parseInt(edt_text);
+                } catch (Exception e) {
+                    edt_count_ = 1;
+                }
+                if(edt_count_>1){
+                    edt_count_ -= 1;
+
+                }
+                holder.card_edt_count.setText(edt_count_ + "");
+
+
+
+                String total_price = holder.price.getText().toString().replace(",", "");
+                int tp = Integer.parseInt(total_price)*edt_count_;
+
+                holder.total_price.setText(tp+"");
+
+                change_product_count(cardList.getId(),edt_count_+"");
+            }
+        });
+
+
         holder.title.setText(cardList.getTitle());
         holder.price.setText(cardList.getPrice());
-        holder.total_price.setText(cardList.getPrice());
+        holder.card_edt_count.setText(cardList.getCount()+"");
+        holder.total_price.setText(cardList.getTotalPrice());
         Glide.with(context)
                 .load(Helper.basUrl + cardList.getImage_path())
                 .thumbnail(0.2f)
@@ -155,6 +216,9 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.MyViewHolder> 
         public RelativeLayout card_layout;
         public MaterialSpinner count_spinner;
 
+        public EditText card_edt_count;
+        public Button card_plus,card_mines;
+
 
         public MyViewHolder(View itemView) {
 
@@ -167,7 +231,11 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.MyViewHolder> 
             delete_card = itemView.findViewById(R.id.delete_card);
             card_layout = itemView.findViewById(R.id.card_layout);
             count_spinner = itemView.findViewById(R.id.count_spinner);
+            card_plus = itemView.findViewById(R.id.card_plus);
+            card_mines = itemView.findViewById(R.id.card_mines);
+            card_edt_count = itemView.findViewById(R.id.card_edt_count);
 
+            card_edt_count.setFilters(new InputFilter[]{new MinMaxFilter("1", "999")});
 
         }
     }

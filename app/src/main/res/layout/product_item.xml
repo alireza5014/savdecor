@@ -86,7 +86,21 @@
 
                 android:fontFamily="@font/iransansmobile"
                 android:gravity="center"
-                android:padding="10dp"
+                android:padding="1dp"
+                android:text="600,000"
+                android:textColor="@color/colorGray"
+                android:textSize="13dp" />
+
+            <TextView
+
+                android:id="@+id/discount_price"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/price"
+
+                android:fontFamily="@font/iransansmobile"
+                android:gravity="center"
+                android:padding="1dp"
                 android:text="50,000"
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="13dp" />

@@ -75,6 +75,7 @@ import ir.savdecor.omid.savdecor.Activities.ProductListActivity;
 import ir.savdecor.omid.savdecor.Activities.ProfileActivity;
 import ir.savdecor.omid.savdecor.Activities.RequestActivity;
 import ir.savdecor.omid.savdecor.Activities.SearchActivity;
+import ir.savdecor.omid.savdecor.Activities.VisitRequestActivity;
 import ir.savdecor.omid.savdecor.Adapters.HomeAdapter;
 import ir.savdecor.omid.savdecor.Adapters.ProductAdapter;
 import ir.savdecor.omid.savdecor.Models.HomeList;
@@ -173,6 +174,8 @@ public class MainActivity extends AppCompatActivity implements BaseSliderView.On
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getApplicationContext(), SearchActivity.class);
+                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
                 startActivity(i);
             }
         });
@@ -182,6 +185,8 @@ public class MainActivity extends AppCompatActivity implements BaseSliderView.On
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getApplicationContext(), CardActivity.class);
+                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
                 startActivity(i);
             }
         });
@@ -235,6 +240,7 @@ public class MainActivity extends AppCompatActivity implements BaseSliderView.On
 
 
         };
+
 
         MyAdapter myAdapter = new MyAdapter(getApplicationContext());
         listView.setAdapter(myAdapter);
@@ -360,6 +366,8 @@ public class MainActivity extends AppCompatActivity implements BaseSliderView.On
             @Override
             public void onClick(View v) {
                 Intent login = new Intent(getApplicationContext(), LoginActivity.class);
+                login.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
                 startActivity(login);
             }
         });
@@ -518,12 +526,16 @@ public class MainActivity extends AppCompatActivity implements BaseSliderView.On
                     } else {
                         intent = new Intent(getApplicationContext(), LoginActivity.class);
                     }
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
                     startActivity(intent);
                     //open another Activity :D -JFP
                     mDrawerLayout.closeDrawers();
                     break;
                 case 2:
                     Intent productList = new Intent(getApplicationContext(), ProductListActivity.class);
+                    productList.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
                     startActivity(productList);
                     //open another Activity :D -JFP
                     mDrawerLayout.closeDrawers();
@@ -531,6 +543,8 @@ public class MainActivity extends AppCompatActivity implements BaseSliderView.On
                 case 3:
 
                     Intent order = new Intent(getApplicationContext(), OrderActivity.class);
+                    order.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
                     startActivity(order);
                     //open another Activity :D -JFP
                     mDrawerLayout.closeDrawers();
@@ -540,6 +554,8 @@ public class MainActivity extends AppCompatActivity implements BaseSliderView.On
                 case 4:
                     //open another Activity :D -JFP
                     Intent fav = new Intent(getApplicationContext(), FavouriteActivity.class);
+                    fav.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
                     startActivity(fav);
                     mDrawerLayout.closeDrawers();
                     break;
@@ -548,6 +564,8 @@ public class MainActivity extends AppCompatActivity implements BaseSliderView.On
                     //open another Activity :D -JFP
                     mDrawerLayout.closeDrawers();
                     Intent i = new Intent(getApplicationContext(), SearchActivity.class);
+                    i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
                     startActivity(i);
                     break;
 
@@ -556,6 +574,8 @@ public class MainActivity extends AppCompatActivity implements BaseSliderView.On
 
 
                     Intent request = new Intent(getApplicationContext(), RequestActivity.class);
+                    request.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
                     startActivity(request);
                     //open another Activity :D -JFP
 
@@ -566,6 +586,11 @@ public class MainActivity extends AppCompatActivity implements BaseSliderView.On
 
 
                 case 7:
+
+                    Intent visit_request = new Intent(getApplicationContext(), VisitRequestActivity.class);
+                    visit_request.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+                    startActivity(visit_request);
                     mDrawerLayout.closeDrawers();
                     break;
                 case 8:
@@ -629,7 +654,10 @@ public class MainActivity extends AppCompatActivity implements BaseSliderView.On
 
         sliderLayout = findViewById(R.id.slider);
 
-        Hash_file_maps.put("رمضان مبارک", Helper.basUrl + "/images/ramadan1.png");
+        Hash_file_maps.put("  پشتیبانی 24 ساعته", Helper.basUrl + "/images/slider/slide5.png");
+        Hash_file_maps.put(" ارائه خدمات نصب ", Helper.basUrl + "/images/slider/slide4.png");
+        Hash_file_maps.put("پرداخت درب منزل", Helper.basUrl + "/images/slider/slide3.png");
+        Hash_file_maps.put("ارسال رایگان", Helper.basUrl + "/images/slider/slide2.png");
         Hash_file_maps.put("جدیدترین محصولات پارکت لمینت ۱۳۹۸", Helper.basUrl + "/images/slide1.png");
 
 

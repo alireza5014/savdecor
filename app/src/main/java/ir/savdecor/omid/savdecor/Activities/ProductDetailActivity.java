@@ -3,16 +3,20 @@ package ir.savdecor.omid.savdecor.Activities;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.InputFilter;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -46,25 +50,28 @@ import ir.savdecor.omid.savdecor.Adapters.ProductAdapter;
 import ir.savdecor.omid.savdecor.Models.ProductList;
 import ir.savdecor.omid.savdecor.R;
 import ir.savdecor.omid.savdecor.Utilities.Helper;
+import ir.savdecor.omid.savdecor.Utilities.MinMaxFilter;
 
 public class ProductDetailActivity extends AppCompatActivity {
     public ImageView back, search, basket;
     public int product_id;
     public String product_title;
-    public TextView action_bar_title;
-    public Button add_to_card_btn;
+    public TextView action_bar_title, discount_label;
+    public Button add_to_card_btn, plus, mines;
 
     public JSONArray responseData;
 
     public List data;
     public ProductList productList;
 
+    public LinearLayout unit_count_and_meter,unit_box;
     public RecyclerView recyclerView;
 
     public ProductAdapter productAdapter;
     public Button comment_btn;
+    public EditText edt_count;
 
-    public TextView price, tilte, description;
+    public TextView price, discount_price, tilte, description;
     public ImageView image_path, favourite;
     public ProgressBar progressBar;
     public int favourite_count;
@@ -101,6 +108,8 @@ public class ProductDetailActivity extends AppCompatActivity {
 
         comment_btn = findViewById(R.id.comment_btn);
         add_to_card_btn = findViewById(R.id.add_to_card_btn);
+        edt_count = findViewById(R.id.edt_count);
+        edt_count.setFilters(new InputFilter[]{new MinMaxFilter("1", "999")});
         add_to_card_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -128,6 +137,8 @@ public class ProductDetailActivity extends AppCompatActivity {
                                 public void onClick(MaterialDialog dialog, DialogAction which) {
 
                                     Intent ii = new Intent(getApplicationContext(), LoginActivity.class);
+                                    ii.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
                                     startActivity(ii);
 
                                 }
@@ -136,6 +147,8 @@ public class ProductDetailActivity extends AppCompatActivity {
                                 @Override
                                 public void onClick(MaterialDialog dialog, DialogAction which) {
                                     Intent ii = new Intent(getApplicationContext(), RegisterActivity.class);
+                                    ii.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
                                     startActivity(ii);
                                 }
                             })
@@ -149,16 +162,60 @@ public class ProductDetailActivity extends AppCompatActivity {
                 Intent intent1 = new Intent(getApplicationContext(), CommentActivity.class);
                 intent1.putExtra("product_id", product_id);
                 intent1.putExtra("product_title", product_title);
+                intent1.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
                 startActivity(intent1);
             }
         });
         progressBar = findViewById(R.id.product_detail_progress);
         price = findViewById(R.id.price);
+        discount_price = findViewById(R.id.discount_price);
+        discount_label = findViewById(R.id.discount_label);
         tilte = findViewById(R.id.title);
         description = findViewById(R.id.description);
         image_path = findViewById(R.id.image_path);
+        plus = findViewById(R.id.plus);
+        mines = findViewById(R.id.mines);
 
 
+        unit_count_and_meter = findViewById(R.id.unit_count_and_meter);
+        unit_box = findViewById(R.id.unit_box);
+
+        plus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int edt_count_;
+                String edt_text = edt_count.getText().toString();
+                try {
+                    edt_count_ = Integer.parseInt(edt_text);
+                } catch (Exception e) {
+                    edt_count_ = 1;
+                }
+                if (edt_count_ > 0) {
+                    edt_count_ += 1;
+
+                }
+                edt_count.setText(edt_count_ + "");
+            }
+        });
+
+        mines.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int edt_count_;
+                String edt_text = edt_count.getText().toString();
+                try {
+                    edt_count_ = Integer.parseInt(edt_text);
+                } catch (Exception e) {
+                    edt_count_ = 1;
+                }
+                if (edt_count_ > 1) {
+                    edt_count_ -= 1;
+
+                }
+                edt_count.setText(edt_count_ + "");
+            }
+        });
         action_bar_title = findViewById(R.id.action_bar_title);
         action_bar_title.setText(product_title);
 
@@ -175,6 +232,8 @@ public class ProductDetailActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getApplicationContext(), SearchActivity.class);
+                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
                 startActivity(i);
             }
         });
@@ -184,6 +243,8 @@ public class ProductDetailActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getApplicationContext(), CardActivity.class);
+                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
                 startActivity(i);
             }
         });
@@ -222,9 +283,31 @@ public class ProductDetailActivity extends AppCompatActivity {
                         // response
 
                         JSONObject obj = null;
+                        JSONObject service = null;
                         try {
                             obj = new JSONObject(response);
+                            service = obj.getJSONObject("service");
+                            String unit = service.getString("unit");
+                            Log.e("unit_unit", unit);
 
+
+                            switch (unit) {
+                                case "متر مربع":
+                                    unit_count_and_meter.setVisibility(View.VISIBLE);
+                                    break;
+
+                                case "بسته":
+                                    unit_box.setVisibility(View.VISIBLE);
+
+                                    break;
+
+                                case "عدد":
+                                    unit_count_and_meter.setVisibility(View.VISIBLE);
+
+                                    break;
+
+
+                            }
                             favourite_count = obj.getInt("favourite_count");
                             if (favourite_count > 0) {
                                 favourite.setImageResource(R.drawable.favorite1);
@@ -237,7 +320,22 @@ public class ProductDetailActivity extends AppCompatActivity {
                             description.setText(obj.getString("description"));
                             price.setText(obj.getString("price") + " تومان ");
 
+                            if (obj.getString("discount").equals("۰")) {
+                                discount_price.setVisibility(View.GONE);
+                                discount_label.setVisibility(View.GONE);
+                            } else {
 
+                                price.setTextColor(getResources().getColor(R.color.colorGray));
+
+                                price.setPaintFlags(price.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+                                int dis = Helper.getDiscountValue(obj.getString("price"), obj.getString("discount"));
+                                discount_price.setText(dis + " تومان ");
+                                discount_label.setText(obj.getString("discount") + " درصد ");
+                                discount_price.setVisibility(View.VISIBLE);
+                                discount_label.setVisibility(View.VISIBLE);
+
+
+                            }
                             if (obj.getString("price").equals("۰") || obj.getInt("count") == 0) {
                                 add_to_card_btn.setEnabled(false);
                             } else {
@@ -280,6 +378,9 @@ public class ProductDetailActivity extends AppCompatActivity {
                                     c.setTitle(jsonObject.getString("title"));
                                     c.setPrice(jsonObject.getString("price"));
                                     c.setImage_path(jsonObject.getString("image_path"));
+
+
+                                    c.setCount(jsonObject.getInt("count"));
 
                                     data.add(c);
 
@@ -420,6 +521,8 @@ public class ProductDetailActivity extends AppCompatActivity {
                                 Toast.makeText(context, message, Toast.LENGTH_LONG).show();
 
                                 Intent i = new Intent(getApplicationContext(), CardActivity.class);
+                                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
                                 startActivity(i);
                             }
 
@@ -455,7 +558,7 @@ public class ProductDetailActivity extends AppCompatActivity {
                 Map<String, String> params = new HashMap<String, String>();
 
                 params.put("product_id", product_id + "");
-                params.put("count", "1");
+                params.put("count", edt_count.getText().toString() + "");
 
 
                 return params;
@@ -467,7 +570,6 @@ public class ProductDetailActivity extends AppCompatActivity {
 
 
         queue.add(postRequest);
-
 
     }
 

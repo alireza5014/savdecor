@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -31,76 +30,36 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import ir.savdecor.omid.savdecor.Adapters.CommentAdapter;
-import ir.savdecor.omid.savdecor.Adapters.ProductAdapter;
-import ir.savdecor.omid.savdecor.Fragment.NewCommentFragment;
+import ir.savdecor.omid.savdecor.Adapters.RequestAdapter;
 import ir.savdecor.omid.savdecor.Fragment.NewRequestFragment;
-import ir.savdecor.omid.savdecor.Models.CommentList;
-import ir.savdecor.omid.savdecor.Models.ProductList;
+import ir.savdecor.omid.savdecor.Fragment.NewVisitRequestFragment;
+import ir.savdecor.omid.savdecor.Models.RequestList;
 import ir.savdecor.omid.savdecor.R;
 import ir.savdecor.omid.savdecor.Utilities.Helper;
 
-public class CommentActivity extends AppCompatActivity {
-    public  int product_id;
-    public String product_title;
-    public Button new_comment_btn;
 
-
+public class VisitRequestActivity extends AppCompatActivity {
     public JSONArray responseData;
-
-    public List data;
-    public CommentList commentList;
-
-    public RecyclerView recyclerView;
-
-    public CommentAdapter commentAdapter;
+    public Button new_visit_request;
     public TextView action_bar_title;
     public ImageView back, search, basket;
+    public static List data;
+    public RequestList requestList;
+
+    public static RecyclerView recyclerView;
+
+    public  static RequestAdapter requestAdapter;
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_comment);
-
-
-        final Intent intent = getIntent();
-        product_id = intent.getIntExtra("product_id", 0);
-
-        product_title = intent.getStringExtra("product_title");
-
-
-        new_comment_btn = findViewById(R.id.new_comment_btn);
-        new_comment_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-        new_comment_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Bundle bundle = new Bundle();
-                bundle.putInt("product_id", product_id);
-
-
-                NewCommentFragment fragment = new NewCommentFragment();
-                fragment.setArguments(bundle);
-
-                FragmentTransaction t = getSupportFragmentManager().beginTransaction();
-//                t.setCustomAnimations(R.anim.inter_anime, R.anim.exit_to_left_);
-                t.replace(R.id.new_comment_id, fragment);
-                t.commit();
-
-
-            }
-        });
-
+        setContentView(R.layout.activity_visit_request);
 
         action_bar_title = findViewById(R.id.action_bar_title);
 
-        action_bar_title.setText("نظرات " + product_title);
+        action_bar_title.setText(" درخواست نصاب " );
 
         back = findViewById(R.id.back);
         back.setOnClickListener(new View.OnClickListener() {
@@ -132,38 +91,52 @@ public class CommentActivity extends AppCompatActivity {
             }
         });
 
-        commentList = new CommentList();
+
+        new_visit_request = findViewById(R.id.new_visit_request);
+        new_visit_request.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                NewVisitRequestFragment fragmentEditProfile = new NewVisitRequestFragment();
+                FragmentTransaction t = getSupportFragmentManager().beginTransaction();
+//                t.setCustomAnimations(R.anim.inter_anime, R.anim.exit_to_left_);
+                t.replace(R.id.fragment_new_visit_request_id, fragmentEditProfile);
+                t.commit();
+
+
+            }
+        });
+
+
+        requestList = new RequestList();
         data = new ArrayList();
-        commentAdapter = null;
+        requestAdapter = null;
 
 
-        recyclerView = findViewById(R.id.rcv_comment_list_id);
+        recyclerView = findViewById(R.id.rcv_visit_request_list_id);
 
-        commentAdapter = new CommentAdapter(getApplicationContext(), data);
+        requestAdapter = new RequestAdapter(getApplicationContext(), data);
 
 
         LinearLayoutManager layoutManager2 = new LinearLayoutManager(getApplicationContext());
 //        layoutManager2.setReverseLayout(true);
+
         recyclerView.setLayoutManager(layoutManager2);
-
-
 //        recyclerView.setNestedScrollingEnabled(false);
-        recyclerView.setAdapter(commentAdapter);
+        recyclerView.setAdapter(requestAdapter);
 
-        getComments(getApplicationContext());
-
+        getMyVisitRequest(getApplicationContext());
     }
 
-    public void getComments(final Context context) {
 
+    public void getMyVisitRequest(final Context context) {
 
         RequestQueue queue = Volley.newRequestQueue(context);
-        StringRequest postRequest = new StringRequest(Request.Method.GET, Helper.basUrl + "api/comments/" + product_id,
+        StringRequest postRequest = new StringRequest(Request.Method.GET, Helper.basUrl + "api/my_visit_requests",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
                         // response
-Log.e("__)_",product_id+"");
+
                         JSONObject obj = null;
                         try {
                             obj = new JSONObject(response);
@@ -175,28 +148,28 @@ Log.e("__)_",product_id+"");
 
                                 try {
                                     JSONObject jsonObject = responseData.getJSONObject(i);
-                                    JSONObject user = jsonObject.getJSONObject("user");
-                                    CommentList c = new CommentList();
+                                    JSONObject jsonObject2 = jsonObject.getJSONObject("request_type");
+
+                                    RequestList c = new RequestList();
                                     c.setId(jsonObject.getInt("id"));
-                                    c.setMessage(jsonObject.getString("message"));
+                                    c.setCity(jsonObject.getString("city"));
+                                    c.setDate(jsonObject.getString("date"));
+                                    c.setState(jsonObject.getString("state"));
+                                    c.setDescription(jsonObject.getString("description"));
                                     c.setCreated_at(jsonObject.getString("created_at"));
-                                    c.setFname(user.getString("fname"));
-                                    c.setLname(user.getString("lname"));
-                                    c.setImage_path(user.getString("image_path"));
+                                    c.setRequest_type(jsonObject2.getString("title"));
 
                                     data.add(c);
 
 
                                 } catch (JSONException e) {
                                     e.printStackTrace();
-
-
                                     //   progressDialog2.dismiss();
                                 }
 
 
                             }
-                            commentAdapter.notifyDataSetChanged();
+                            requestAdapter.notifyDataSetChanged();
 
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -212,7 +185,7 @@ Log.e("__)_",product_id+"");
                     public void onErrorResponse(VolleyError error) {
 
                         // TODO Auto-generated method stub
-                        Log.d("ERROR", "error => " + error.toString());
+                        Log.e("ERROR", "error => " + error.toString());
                     }
                 }
         ) {
@@ -230,7 +203,7 @@ Log.e("__)_",product_id+"");
 //        postRequest.setShouldCache(false);
         postRequest.setShouldCache(true);
         if (Helper.internetIsConnected()) {
-            queue.getCache().remove(Helper.basUrl + "api/comments/" + product_id);
+            queue.getCache().remove(Helper.basUrl + "api/my_visit_requests");
         }
 
         queue.add(postRequest);

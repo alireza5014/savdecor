@@ -57,6 +57,8 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getApplicationContext(), RegisterActivity.class);
+                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
                 startActivity(i);
                 finish();
             }
@@ -119,6 +121,8 @@ public class LoginActivity extends AppCompatActivity {
                                 editor.commit();
 
                                 Intent i = new Intent(context, MainActivity.class);
+                                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
                                 context.startActivity(i);
                                 finish();
 

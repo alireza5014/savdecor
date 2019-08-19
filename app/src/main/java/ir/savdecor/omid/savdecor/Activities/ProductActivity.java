@@ -85,6 +85,8 @@ public class ProductActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getApplicationContext(), SearchActivity.class);
+                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
                 startActivity(i);
             }
         });
@@ -94,6 +96,8 @@ public class ProductActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getApplicationContext(), CardActivity.class);
+                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
                 startActivity(i);
             }
         });
@@ -129,15 +133,16 @@ public class ProductActivity extends AppCompatActivity {
 
     public void getProducts(final Context context) {
 
-String URL=Helper.basUrl + "api/products?sample_id=" + sample_id+"&& service_id=" + service_id;
+String URL=Helper.basUrl + "api/products?sample_id=" + sample_id+"&&service_id=" + service_id;
+        Log.e("AAAAAAAAAA",""+URL);
+
         RequestQueue queue = Volley.newRequestQueue(context);
         StringRequest postRequest = new StringRequest(Request.Method.GET, URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
                         // response
-
-                        JSONObject obj = null;
+                         JSONObject obj = null;
                         try {
                             obj = new JSONObject(response);
 
@@ -162,6 +167,8 @@ String URL=Helper.basUrl + "api/products?sample_id=" + sample_id+"&& service_id=
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                     //   progressDialog2.dismiss();
+                                    Helper.message(context,"BBBB"+Helper.basUrl);
+
                                 }
 
 
@@ -170,6 +177,8 @@ String URL=Helper.basUrl + "api/products?sample_id=" + sample_id+"&& service_id=
 
                         } catch (JSONException e) {
                             e.printStackTrace();
+                            Log.e("PRODUCTSSSSS_error",e.getMessage());
+
                         }
 
                         // Log.d("Response", response1 + "");
@@ -182,7 +191,8 @@ String URL=Helper.basUrl + "api/products?sample_id=" + sample_id+"&& service_id=
                     public void onErrorResponse(VolleyError error) {
 
                         // TODO Auto-generated method stub
-                        Log.d("ERROR", "error => " + error.toString());
+                        Log.d("ERROR111", "error => " + error.toString());
+
                     }
                 }
         ) {
