@@ -40,7 +40,7 @@ public final class Helper {
 
     //    public static String basUrl = "http://192.168.43.72/savdecor/public/";
 //    public static String basUrl = "http://192.168.43.218/savdecor/public/";
-    public static String basUrl = "http://www.savdecor.ir/";
+    public static String basUrl = "https://www.savdecor.ir/";
     public static String socketURL = "http://192.168.43.72:8005";
     public static String getVersionApp = "1.0.0";
     public static String PACKAGE_NAME = "com.example.alireza.dalang";
@@ -60,6 +60,16 @@ public final class Helper {
         return preferences.getString("user_token", "");
 
 
+    }
+
+
+    public static int getDiscountPrice(int price, int discount) {
+
+       if(discount==0){
+           return  price;
+       }
+       int temp = discount*price / 100;
+        return price - temp;
     }
 
     public static int getDiscountValue(String price, String discount) {
@@ -209,6 +219,21 @@ public final class Helper {
         editor.commit();
 
 
+    }
+
+
+    public static void setDiscount(Context context,int discount) {
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putInt("discount", discount);
+        editor.apply();
+        editor.commit();
+
+
+    }
+    public static int getDiscount(Context context) {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+        return preferences.getInt("discount", 0);
     }
 
 

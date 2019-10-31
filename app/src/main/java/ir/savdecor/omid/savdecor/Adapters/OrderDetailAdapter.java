@@ -53,11 +53,20 @@ public class OrderDetailAdapter extends RecyclerView.Adapter<OrderDetailAdapter.
 
         final OrderDetailList orderDetailList = data.get(position);
 
-        holder.id.setText(orderDetailList.getId()+"");
+        String txt_discount = "";
+        if (!orderDetailList.getDiscount().equals("۰")) {
+            txt_discount = "("+orderDetailList.getDiscount() + " درصد تخفیف) ";
+        }
+        else{
+            txt_discount = "";
+        }
+        holder.id.setText(orderDetailList.getId() + "");
         holder.title.setText(orderDetailList.getTitle());
-        holder.price.setText(orderDetailList.getPrice()+" تومان ");
-        holder.count.setText(orderDetailList.getCount()+" عدد ");
-        holder.total_price.setText(orderDetailList.getCount()*orderDetailList.getPrice()+" تومان ");
+        holder.price.setText(orderDetailList.getPrice() + " تومان ");
+
+
+        holder.unit_value.setText(orderDetailList.getUnit_value() + "  " + orderDetailList.getUnit());
+        holder.total_price.setText(orderDetailList.getTotal_price() + " تومان "+txt_discount);
 
         Glide.with(context)
                 .load(Helper.basUrl + orderDetailList.getImage_path())
@@ -93,8 +102,8 @@ public class OrderDetailAdapter extends RecyclerView.Adapter<OrderDetailAdapter.
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
-        public TextView id,title,price,count,total_price;
-public ImageView image_path;
+        public TextView id, title, price, unit_value, total_price;
+        public ImageView image_path;
 
 
         public MyViewHolder(View itemView) {
@@ -104,7 +113,7 @@ public ImageView image_path;
             title = itemView.findViewById(R.id.title);
             price = itemView.findViewById(R.id.price);
             total_price = itemView.findViewById(R.id.total_price);
-            count = itemView.findViewById(R.id.count);
+            unit_value = itemView.findViewById(R.id.unit_value);
             image_path = itemView.findViewById(R.id.image_path);
 
         }

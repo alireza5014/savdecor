@@ -5,8 +5,15 @@ import org.json.JSONArray;
 public class OrderList {
     private int id, count, total_price;
     private String created_at, code, title, image_path;
+    private int discount;
 
+    public int getDiscount() {
+        return discount;
+    }
 
+    public void setDiscount(int discount) {
+        this.discount = discount;
+    }
 
     private JSONArray products;
 
@@ -26,7 +33,6 @@ public class OrderList {
     public void setProducts(JSONArray products) {
         this.products = products;
     }
-
 
 
     public int getId() {

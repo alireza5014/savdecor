@@ -4,10 +4,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.InputFilter;
@@ -54,28 +52,33 @@ import ir.savdecor.omid.savdecor.Utilities.MinMaxFilter;
 
 public class ProductDetailActivity extends AppCompatActivity {
     public ImageView back, search, basket;
-    public int product_id;
+    public int product_id, db_price, total_price;
     public String product_title;
     public TextView action_bar_title, discount_label;
     public Button add_to_card_btn, plus, mines;
 
     public JSONArray responseData;
+    public String unit;
 
     public List data;
     public ProductList productList;
 
-    public LinearLayout unit_count_and_meter,unit_box;
+    public LinearLayout unit_count_and_meter, unit_width_height;
     public RecyclerView recyclerView;
 
     public ProductAdapter productAdapter;
     public Button comment_btn;
-    public EditText edt_count;
+    public EditText edt_count, edt_width, edt_height;
 
     public TextView price, discount_price, tilte, description;
     public ImageView image_path, favourite;
     public ProgressBar progressBar;
     public int favourite_count;
 
+    public int count = 0;
+    public double width = 0;
+    public double height = 0;
+    public String size ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -109,6 +112,8 @@ public class ProductDetailActivity extends AppCompatActivity {
         comment_btn = findViewById(R.id.comment_btn);
         add_to_card_btn = findViewById(R.id.add_to_card_btn);
         edt_count = findViewById(R.id.edt_count);
+        edt_width = findViewById(R.id.edt_width);
+        edt_height = findViewById(R.id.edt_height);
         edt_count.setFilters(new InputFilter[]{new MinMaxFilter("1", "999")});
         add_to_card_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -179,7 +184,7 @@ public class ProductDetailActivity extends AppCompatActivity {
 
 
         unit_count_and_meter = findViewById(R.id.unit_count_and_meter);
-        unit_box = findViewById(R.id.unit_box);
+        unit_width_height = findViewById(R.id.unit_width_height);
 
         plus.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -287,17 +292,19 @@ public class ProductDetailActivity extends AppCompatActivity {
                         try {
                             obj = new JSONObject(response);
                             service = obj.getJSONObject("service");
-                            String unit = service.getString("unit");
+                            unit = service.getString("unit");
+                            size =  obj.getString("size");
                             Log.e("unit_unit", unit);
 
 
                             switch (unit) {
                                 case "متر مربع":
-                                    unit_count_and_meter.setVisibility(View.VISIBLE);
+                                    unit_width_height.setVisibility(View.VISIBLE);
+
                                     break;
 
                                 case "بسته":
-                                    unit_box.setVisibility(View.VISIBLE);
+                                    unit_count_and_meter.setVisibility(View.VISIBLE);
 
                                     break;
 
@@ -315,6 +322,7 @@ public class ProductDetailActivity extends AppCompatActivity {
                                 favourite.setImageResource(R.drawable.favorite0);
 
                             }
+                            db_price = Integer.parseInt(obj.getString("price"));
 
                             tilte.setText(obj.getString("title"));
                             description.setText(obj.getString("description"));
@@ -376,6 +384,7 @@ public class ProductDetailActivity extends AppCompatActivity {
                                     c.setDiscount(jsonObject.getString("discount"));
 
                                     c.setTitle(jsonObject.getString("title"));
+
                                     c.setPrice(jsonObject.getString("price"));
                                     c.setImage_path(jsonObject.getString("image_path"));
 
@@ -387,6 +396,8 @@ public class ProductDetailActivity extends AppCompatActivity {
 
                                 } catch (JSONException e) {
                                     e.printStackTrace();
+
+                                    Log.e("YYY",e.getMessage());
                                     //   progressDialog2.dismiss();
                                 }
 
@@ -504,6 +515,41 @@ public class ProductDetailActivity extends AppCompatActivity {
 
     public void add_to_card(final Context context, final int product_id) {
 
+
+        if (!edt_count.getText().toString().equals("")) {
+            count = Integer.parseInt(edt_count.getText().toString());
+
+
+            if (unit.equals("عدد")) {
+                total_price = db_price * count;
+
+            } else {
+                // baste bood
+
+
+                double box_count = Math.ceil(count / Double.parseDouble(size));
+//                        tp = price * box_count;
+                total_price = db_price * (int)box_count;
+
+
+            }
+        }
+
+
+        if (!edt_width.getText().toString().equals("") || !edt_width.getText().toString().equals("")) {
+            width = Integer.parseInt(edt_width.getText().toString());
+            height = Integer.parseInt(edt_height.getText().toString());
+
+            double temp = width * height;
+            total_price = (int) temp*db_price;
+
+        }
+
+
+        Log.e("TTTT", count + "");
+        Log.e("TTTT", width + "");
+        Log.e("TTTT", height + "");
+
         String URL = Helper.basUrl + "api/add_to_card";
         RequestQueue queue = Volley.newRequestQueue(context);
         StringRequest postRequest = new StringRequest(Request.Method.POST, URL,
@@ -558,7 +604,10 @@ public class ProductDetailActivity extends AppCompatActivity {
                 Map<String, String> params = new HashMap<String, String>();
 
                 params.put("product_id", product_id + "");
-                params.put("count", edt_count.getText().toString() + "");
+                params.put("count", count + "");
+                params.put("width", width + "");
+                params.put("height", height + "");
+                params.put("price", total_price + "");
 
 
                 return params;

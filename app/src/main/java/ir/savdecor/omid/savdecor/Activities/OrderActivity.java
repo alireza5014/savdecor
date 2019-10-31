@@ -130,10 +130,7 @@ public class OrderActivity extends AppCompatActivity {
 
                             responseData = obj.getJSONArray("data");
 
-                            if (responseData.length() == 0) {
-
-                            } else {
-
+                            if (responseData.length() > 0) {
 
                                 for (int i = 0; i < responseData.length(); i++) {
 
@@ -142,6 +139,7 @@ public class OrderActivity extends AppCompatActivity {
                                         OrderList c = new OrderList();
 
                                         c.setId(jsonObject.getInt("id"));
+                                        c.setDiscount(jsonObject.getInt("discount"));
                                         c.setTotal_price(jsonObject.getInt("total_price"));
                                         c.setCreated_at(jsonObject.getString("created_at"));
                                         c.setProducts(jsonObject.getJSONArray("products"));

@@ -19,7 +19,7 @@
         android:layout_marginTop="100dp"
         android:layout_marginRight="20dp"
 
-        android:background="@drawable/green_border"
+        android:background="@color/colorLightGreen"
         android:orientation="vertical">
 
         <TextView

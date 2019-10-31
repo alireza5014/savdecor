@@ -26,7 +26,7 @@ public class AboutUsActivity extends AppCompatActivity {
 
         action_bar_title = findViewById(R.id.action_bar_title);
 
-        action_bar_title.setText("سوابق خرید");
+        action_bar_title.setText("  درباره ما ");
 
         back = findViewById(R.id.back);
         back.setOnClickListener(new View.OnClickListener() {

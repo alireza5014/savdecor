@@ -4,10 +4,19 @@ public class ProductList {
 
     private int id;
     private int count;
+    private double size;
     private String discount;
     private String  title;
     private String  image_path;
     private String  price;
+
+    public double getSize() {
+        return size;
+    }
+
+    public void setSize(double size) {
+        this.size = size;
+    }
 
     public int getCount() {
         return count;

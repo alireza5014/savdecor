@@ -4,11 +4,12 @@
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
 
     android:layout_width="match_parent"
-
+    android:textDirection="ltr"
+    android:layoutDirection="ltr"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_margin="0dp"
-    android:background="@drawable/edittext_border"
+    android:background="@color/colorWhite"
     app:cardCornerRadius="0dp"
     card_view:cardElevation="12dp"
     >
@@ -27,39 +28,40 @@
 
     <ImageView
         android:id="@+id/back"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_alignParentRight="true"
-        android:layout_margin="10dp"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_alignParentEnd="true"
+
+        android:layout_margin="5dp"
         android:src="@drawable/back" />
 
     <ImageView
         android:id="@+id/basket"
 
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:layout_alignParentLeft="true"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_alignParentStart="true"
 
-        android:layout_margin="10dp"
+        android:layout_margin="5dp"
         android:src="@drawable/basket" />
 
     <TextView
         android:id="@+id/buy_count"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="-10dp"
+        android:layout_marginLeft="-5dp"
         android:layout_toEndOf="@+id/basket"
         android:fontFamily="@font/iransansmobile"
         android:text="۱"
         android:textColor="@color/colorWhite"
-        android:textSize="17dp" />
+        android:textSize="17sp" />
 
     <ImageView
         android:id="@+id/search"
 
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:layout_margin="10dp"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_margin="5dp"
         android:layout_toRightOf="@id/basket"
         android:src="@drawable/search" />
 
@@ -75,7 +77,6 @@
         android:fontFamily="@font/iransansmobile"
         android:gravity="center"
         android:layoutDirection="ltr"
-        android:text="ddd"
 
         android:textColor="@color/colorWhite"
         android:textDirection="rtl"

@@ -137,6 +137,8 @@ public class FavouriteActivity extends AppCompatActivity {
                                     JSONObject jsonObject = responseData.getJSONObject(i);
                                     ProductList c = new ProductList();
                                     c.setId(jsonObject.getInt("id"));
+                                    c.setCount(jsonObject.getInt("count"));
+
                                     c.setDiscount(jsonObject.getString("discount"));
                                     c.setTitle(jsonObject.getString("title"));
                                     c.setPrice(jsonObject.getString("price"));

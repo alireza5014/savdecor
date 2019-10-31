@@ -1,16 +1,16 @@
 package ir.savdecor.omid.savdecor.Activities;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -39,11 +39,44 @@ public class LoginActivity extends AppCompatActivity {
     public ProgressBar login_progressbar;
     public JSONObject login_obj;
     public EditText mobile, password;
+    public ImageView back, search, basket;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+
+        back = findViewById(R.id.back);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
+        search = findViewById(R.id.search);
+        search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(), SearchActivity.class);
+                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+                startActivity(i);
+            }
+        });
+
+        basket = findViewById(R.id.basket);
+        basket.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(), CardActivity.class);
+                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+                startActivity(i);
+            }
+        });
+
 
         login_progressbar = findViewById(R.id.login_progressbar);
 
@@ -84,7 +117,7 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
                         // response
-                         Toast.makeText(context, response + "", Toast.LENGTH_LONG).show();
+//                         Toast.makeText(context, response + "", Toast.LENGTH_LONG).show();
 
                         JSONArray errors = null;
 

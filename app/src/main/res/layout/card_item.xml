@@ -68,7 +68,7 @@
             android:layout_marginLeft="10dp"
             android:layout_marginTop="110dp"
             android:layout_marginRight="10dp"
-            android:background="@color/colorLightGray"
+            android:background="@color/colorWhite"
             android:orientation="horizontal">
 
             <TextView
@@ -81,19 +81,30 @@
                 android:fontFamily="@font/iransansmobile"
                 android:text="قیمت واحد"
                 android:textColor="@color/colorblack"
-                android:textSize="14sp" />
+                android:textSize="10sp" />
 
             <TextView
                 android:id="@+id/price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:layout_marginRight="10dp"
+                android:layout_marginEnd="10dp"
                 android:layout_weight=".5"
                 android:fontFamily="@font/iransansmobile"
                 android:text="0"
                 android:textColor="@color/colorblack"
-                android:textSize="14sp" />
+                android:textSize="10sp" />
+            <TextView
+                android:id="@+id/discount_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="10dp"
+                android:layout_weight=".5"
+                android:fontFamily="@font/iransansmobile"
+                android:text="0"
+                android:textColor="@color/colorblack"
+                android:textSize="10sp" />
 
             <com.jaredrummler.materialspinner.MaterialSpinner
 
@@ -108,56 +119,145 @@
                 android:textSize="10sp"
                 android:visibility="gone" />
 
-            <Button
+            <LinearLayout
+                android:id="@+id/unit_width_height"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_marginTop="10dp"
+                android:visibility="visible">
+
+                <EditText
+                    android:id="@+id/edt_width"
+                    android:layout_width="50dp"
+
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="1dp"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginRight="1dp"
+                    android:layout_marginBottom="15dp"
+                    android:background="@drawable/edittext_border"
+                    android:fontFamily="@font/iransansmobile"
+                    android:gravity="center"
+                    android:hint="عرض"
+                    android:inputType="numberDecimal"
+                    android:maxLength="5"
+
+                    android:textColor="@color/solid_black"
+                    android:textColorHint="@color/colorGray"
+                    android:textSize="12sp" />
+
+                <EditText
+                    android:id="@+id/edt_height"
+                    android:layout_width="50dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="1dp"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginRight="1dp"
+                    android:layout_marginBottom="15dp"
+                    android:background="@drawable/edittext_border"
+                    android:fontFamily="@font/iransansmobile"
+                    android:gravity="center"
+                    android:hint="ارتفاع"
+                    android:inputType="numberDecimal"
+
+                    android:maxLength="5"
+                    android:textColor="@color/solid_black"
+                    android:textColorHint="@color/colorGray"
+
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/txt_width_mul_height"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:fontFamily="@font/iransansmobile"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:text="30  منر مربع"
+                    android:textColor="@color/solid_black"
+
+                    android:textSize="10sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/unit_count_and_meter"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_marginTop="10dp"
+                android:visibility="visible">
+
+                <Button
 
 
-                android:id="@+id/card_mines"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                    android:id="@+id/card_mines"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
 
-                android:layout_marginLeft="1dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginRight="1dp"
-                android:layout_marginBottom="15dp"
-                android:background="@color/colorGreen"
-                android:fontFamily="@font/iransansmobile"
-                android:text="-"
-                android:textSize="18sp" />
+                    android:layout_marginLeft="1dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="1dp"
+                    android:layout_marginBottom="15dp"
+                    android:background="@color/colorLightPink"
+                    android:fontFamily="@font/iransansmobile"
+                    android:text="-"
+                    android:textSize="18sp" />
 
-            <EditText
-                android:id="@+id/card_edt_count"
-                android:layout_width="50dp"
-                android:layout_height="30dp"
-                android:layout_marginLeft="1dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginRight="1dp"
-                android:layout_marginBottom="15dp"
-                android:background="@drawable/edittext_border"
-                android:fontFamily="@font/iransansmobile"
-                android:gravity="center"
-                android:inputType="number"
-                android:text="1"
+                <EditText
+                    android:id="@+id/card_edt_count"
+                    android:layout_width="50dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="1dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="1dp"
+                    android:layout_marginBottom="15dp"
+                    android:background="@drawable/edittext_border"
+                    android:fontFamily="@font/iransansmobile"
+                    android:gravity="center"
+                    android:inputType="number"
 
-                android:textColor="@color/solid_black" />
+                    android:text="1"
 
-            <Button
+                    android:textColor="@color/solid_black" />
 
-
-                android:id="@+id/card_plus"
-                android:layout_width="30dp"
-
-                android:layout_height="30dp"
+                <Button
 
 
-                android:layout_marginLeft="1dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginRight="1dp"
-                android:layout_marginBottom="15dp"
-                android:background="@color/colorGreen"
-                android:fontFamily="@font/iransansmobile"
-                android:text="+"
-                android:textSize="18sp" />
+                    android:id="@+id/card_plus"
+                    android:layout_width="30dp"
 
+                    android:layout_height="30dp"
+
+
+                    android:layout_marginLeft="1dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="1dp"
+                    android:layout_marginBottom="15dp"
+                    android:background="@color/colorGreen"
+                    android:fontFamily="@font/iransansmobile"
+                    android:text="+"
+                    android:textSize="18sp" />
+
+
+                <TextView
+                    android:id="@+id/txt_count_mul_meter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+
+                    android:fontFamily="@font/iransansmobile"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:text=""
+                    android:textColor="@color/solid_black"
+                    android:textSize="12sp" />
+
+            </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
@@ -167,7 +267,7 @@
             android:layout_marginTop="165dp"
             android:layout_marginRight="10dp"
             android:layout_marginBottom="10dp"
-            android:background="@color/colorLightGray"
+            android:background="@color/colorWhite"
             android:orientation="horizontal">
 
             <TextView

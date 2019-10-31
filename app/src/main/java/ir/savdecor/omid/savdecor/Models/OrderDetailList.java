@@ -1,10 +1,25 @@
 package ir.savdecor.omid.savdecor.Models;
 
-import org.json.JSONArray;
-
 public class OrderDetailList {
-    private int id,count,price,total_price;
-    private String title,image_path;
+    private int id,price,total_price;
+    private String title,image_path,unit,discount,unit_value;
+private  double size;
+
+    public String getUnit_value() {
+        return unit_value;
+    }
+
+    public void setUnit_value(String unit_value) {
+        this.unit_value = unit_value;
+    }
+
+    public String getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(String discount) {
+        this.discount = discount;
+    }
 
     public String getImage_path() {
         return image_path;
@@ -12,6 +27,14 @@ public class OrderDetailList {
 
     public void setImage_path(String image_path) {
         this.image_path = image_path;
+    }
+
+    public String getUnit() {
+        return unit;
+    }
+
+    public void setUnit(String unit) {
+        this.unit = unit;
     }
 
     public String getTitle() {
@@ -22,13 +45,7 @@ public class OrderDetailList {
         this.title = title;
     }
 
-    public int getCount() {
-        return count;
-    }
 
-    public void setCount(int count) {
-        this.count = count;
-    }
 
     public int getPrice() {
         return price;
